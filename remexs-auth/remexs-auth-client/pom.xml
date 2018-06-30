@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.remexs.auth</groupId>
+	<artifactId>remexs-auth-client</artifactId>
+	<version>1.0.RELEASE</version>
+	<name>remexs-auth-client</name>
+
+	<parent>
+		<groupId>com.remexs.auth</groupId>
+		<artifactId>remexs-auth</artifactId>
+		<version>1.0.RELEASE</version>
+	</parent>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compile.source>${java.version}</maven.compile.source>
+		<maven.compile.target>${java.version}</maven.compile.target>
+
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-feign</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.remexs.auth</groupId>
+			<artifactId>remexs-auth-common</artifactId>
+		</dependency>
+		
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+        </dependency>
+        
+	</dependencies>
+</project>

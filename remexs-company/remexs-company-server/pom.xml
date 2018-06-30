@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.remexs.company</groupId>
+	<artifactId>remexs-company-server</artifactId>
+	<version>1.0.RELEASE</version>
+	<name>remexs-company-server</name>
+
+	<parent>
+		<groupId>com.remexs.company</groupId>
+		<artifactId>remexs-company</artifactId>
+		<version>1.0.RELEASE</version>
+	</parent>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compile.source>${java.version}</maven.compile.source>
+		<maven.compile.target>${java.version}</maven.compile.target>
+		<springfox.version>2.7.0</springfox.version>
+
+	</properties>
+
+	<dependencies>
+		<!-- 自定义包 -->
+		<dependency>
+			<groupId>com.remexs</groupId>
+			<artifactId>remexs-common</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.remexs.data</groupId>
+			<artifactId>remexs-data-mybatis</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.remexs.company</groupId>
+			<artifactId>remexs-company-common</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.remexs.auth</groupId>
+			<artifactId>remexs-auth-client</artifactId>
+			<version>1.0.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox.version}</version>
+		</dependency>
+	</dependencies>
+</project>

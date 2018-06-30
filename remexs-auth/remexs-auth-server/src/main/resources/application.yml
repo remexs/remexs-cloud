@@ -1,0 +1,72 @@
+server:
+  port: 9621
+spring:
+  redis:
+    host: 192.168.110.10
+    password: 123456
+    port: 6379
+    database: 1
+  application:
+    name: remexs-auth
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    druid:
+      url: jdbc:mysql://192.168.110.10:3306/remexs_user?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      username: root
+      password: root
+      initial-size: 10
+      max-active: 100
+      min-idle: 10
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        login-username: admin
+        login-password: admin
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
+mybatis-plus:
+  mapper-locations: classpath*:**/*Dao.xml
+  typeAliasesPackage: com.remexs.**.entity,com.remexs.common.dto.impl
+  global-config:
+    meta-object-handler: com.remexs.data.mybatis.handler.AutoColumnFillHandler
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+eureka:
+  instance:
+    statusPageUrlPath: /swagger-ui.html
+    healthCheckUrlPath: /health
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
+    enabled: true
+
+  
+auth:
+  server:
+    user-token-enable: false #是否开启用户请求验证
+    user-token-header: user-token
+    user-token-secret: x2318^^(*WRYQWR(QW&T
+    user-token-expire: 3600
+    client-token-header: client-token
+    client-token-enable: false #是否开启客户端请求验证
+    client-token-expire: 3600
+    client-token-secret: x2318^^(*WRYQWR(QW&T
