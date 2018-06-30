@@ -1,4 +1,4 @@
-package com.remexs.data.mybatis.constant;
+package com.remexs.data.mybatis.constants;
 
 public interface SearchCons {
 	/**

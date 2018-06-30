@@ -3,6 +3,7 @@ package com.remexs.common.utils;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.jar.JarFile;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -247,6 +248,8 @@ public class ClassUtils extends org.apache.commons.lang3.ClassUtils{
 			throw new ServiceException(error);
 		}
 	}
+	
+	
 	public static void main(String[] args) throws NotFoundException, CannotCompileException {
 		String error = StringUtils.merge("构造类的实例失败,class:{0},{1}", "123", "456");
 		System.out.println(error);

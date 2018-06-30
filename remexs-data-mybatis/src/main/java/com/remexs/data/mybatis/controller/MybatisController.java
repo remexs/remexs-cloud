@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.remexs.common.annotation.ApiMethodFilter;
 import com.remexs.common.dto.impl.HashDto;
 import com.remexs.common.response.Result;
 import com.remexs.common.response.ResultUtils;
@@ -17,13 +17,12 @@ import com.remexs.common.vo.PageVO;
 import com.remexs.data.mybatis.entity.MybatisEntity;
 import com.remexs.data.mybatis.service.MybatisService;
 
-
 /**
  * 
  * @author remexs
  *
  */
-public class MybatisController <BaseService extends MybatisService<Entity>, Entity extends MybatisEntity> {
+public class MybatisController<BaseService extends MybatisService<Entity>, Entity extends MybatisEntity> extends BaseController {
 
 	@Autowired
 	protected BaseService baseService;
@@ -34,7 +33,9 @@ public class MybatisController <BaseService extends MybatisService<Entity>, Enti
 	 * @param model
 	 * @return
 	 */
+
 	@RequestMapping(value = "", method = RequestMethod.POST)
+	@ApiMethodFilter(name = "新增", code = "add", method = "POST", path = "")
 	public Result<String> add(@RequestBody Entity entity) {
 		baseService.insert(entity);
 		return ResultUtils.ok(entity.getId());
@@ -47,6 +48,7 @@ public class MybatisController <BaseService extends MybatisService<Entity>, Enti
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@ApiMethodFilter(name = "修改", code = "update", method = "PUT", path = "{*}")
 	@ResponseBody
 	public Result<Void> update(@RequestBody Entity entity) {
 		baseService.updateById(entity);
@@ -60,6 +62,7 @@ public class MybatisController <BaseService extends MybatisService<Entity>, Enti
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@ApiMethodFilter(name = "删除", code = "remove", method = "DELETE", path = "{*}")
 	@ResponseBody
 	public Result<Void> remove(@PathVariable String id) {
 		baseService.deleteById(id);
@@ -73,6 +76,7 @@ public class MybatisController <BaseService extends MybatisService<Entity>, Enti
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@ApiMethodFilter(name = "查看", code = "get", method = "GET", path = "/{*}")
 	@ResponseBody
 	public Result<Entity> get(@PathVariable String id) {
 		Entity entity = baseService.selectById(id);
@@ -85,9 +89,10 @@ public class MybatisController <BaseService extends MybatisService<Entity>, Enti
 	 * @param sortsDto
 	 * @return
 	 */
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.PATCH)
+	@ApiMethodFilter(name = "列表", code = "list", method = "PATCH", path = "")
 	@ResponseBody
-	public Result<List<Entity>> list(HashDto paramsDto, @RequestParam(required = false) HashDto sortsDto) {
+	public Result<List<Entity>> list(@RequestBody(required = false) HashDto paramsDto, @RequestBody(required = false) HashDto sortsDto) {
 		List<Entity> list = baseService.list(paramsDto, sortsDto);
 		return ResultUtils.ok(list);
 	}
@@ -98,10 +103,10 @@ public class MybatisController <BaseService extends MybatisService<Entity>, Enti
 	 * @param sortsDto
 	 * @return
 	 */
-	@RequestMapping(value = "/page", method = RequestMethod.GET)
+	@RequestMapping(value = "/page", method = RequestMethod.PATCH)
+	@ApiMethodFilter(name = "分页", code = "page", method = "PATCH", path = "/page")
 	@ResponseBody
-	public Result<PageVO<Entity>> page(@RequestParam HashDto paramsDto,
-			@RequestParam(required = false) HashDto sortsDto) {
+	public Result<PageVO<Entity>> page(@RequestBody(required = false) HashDto paramsDto, @RequestBody(required = false) HashDto sortsDto) {
 		PageVO<Entity> pageVO = new PageVO<>();
 		baseService.page(pageVO);
 		return ResultUtils.ok(pageVO);

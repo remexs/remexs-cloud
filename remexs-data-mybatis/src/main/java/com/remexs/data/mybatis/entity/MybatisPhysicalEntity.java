@@ -21,7 +21,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class PhysicalEntity<T extends Model<T>> extends MybatisEntity<T> {
+public class MybatisPhysicalEntity<T extends Model<T>> extends MybatisEntity<T> {
 
 	/**
 	 * 

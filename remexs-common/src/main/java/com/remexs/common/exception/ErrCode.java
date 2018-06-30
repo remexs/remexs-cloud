@@ -26,14 +26,16 @@ public enum ErrCode {
     INVALID_REQUEST(400,"参数错误"),
     /**没有权限 */
     UNAUTHORIZED(401,"没有权限"),
-    /** 禁止访问 */
-    FORBIDDEN(403,"禁止访问"),
     /** 资源不存在 */
     NOT_FOUND(404,"资源不存在"),
+    /** 禁止访问 */
+    METHOD_NOT_ALLOWED(405,"禁止访问"),
     /** 请求的格式不正确 */
     NOT_ACCEPTABLE(406,"请求的格式不正确"),
     /** 操作成功 */
     GONE(410,"数据被删除"),
+    /** 不支持的媒体类型 */
+    UNSUPPORTED_MEDIA_TYPE(415,"不支持的媒体类型 "),
     /** 参数验证错误 */
     UNPROCESABLE_ENTITY(422,"参数验证错误"),
     /** 服务器发生错误 */

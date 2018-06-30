@@ -20,6 +20,8 @@ public class ServiceException extends RuntimeException {
 
     String errmsg;
     int errcode;
+    
+	
 	public ServiceException(String errmsg){
 		this.errcode=ErrCode.UN_KNOW_ERROR.getCode();
 		this.errmsg=errmsg;
@@ -34,4 +36,16 @@ public class ServiceException extends RuntimeException {
 		this.errmsg = errmsg;
 	}
 	
+	public String getErrmsg() {
+		return errmsg;
+	}
+	public void setErrmsg(String errmsg) {
+		this.errmsg = errmsg;
+	}
+	public int getErrcode() {
+		return errcode;
+	}
+	public void setErrcode(int errcode) {
+		this.errcode = errcode;
+	}
 }

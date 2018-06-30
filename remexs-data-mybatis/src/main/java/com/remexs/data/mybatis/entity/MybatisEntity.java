@@ -30,6 +30,7 @@ public abstract class MybatisEntity<T extends Model<T>> extends Model<T> {
 	 */
 	@TableId(type = IdType.ID_WORKER_STR)
 	public String id;
+
 	
 	/**
 	 * 将当前对象转换为Dto对象
@@ -47,4 +48,7 @@ public abstract class MybatisEntity<T extends Model<T>> extends Model<T> {
 	public String toJson() {
 		return JsonUtils.toJson(this);
 	}
+
+
+
 }

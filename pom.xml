@@ -11,9 +11,9 @@
         <module>remexs-common</module>
         <module>remexs-data-mybatis</module>
         <module>remexs-data-mongodb</module>
-        <module>remexs-web</module>
         <module>remexs-eureka</module>
-        <module>remexs-corp</module>
+        <module>remexs-auth</module>
+        <module>remexs-company</module>
     </modules>
 
     <properties>
@@ -26,7 +26,7 @@
         <remexs-parent.version>1.0.RELEASE</remexs-parent.version>
         <remexs-common.version>1.0.RELEASE</remexs-common.version>
         <remexs-data-mybatis.version>1.0.RELEASE</remexs-data-mybatis.version>
-        <remexs-web.version>1.0.RELEASE</remexs-web.version>
+        <remexs-auth.version>1.0.RELEASE</remexs-auth.version>
         <remexs-eureka.version>1.0.RELEASE</remexs-eureka.version>
     </properties>
 
@@ -54,14 +54,19 @@
 
             <dependency>
                 <groupId>com.remexs</groupId>
-                <artifactId>remexs-web</artifactId>
-                <version>${remexs-web.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.remexs</groupId>
                 <artifactId>remexs-eureka</artifactId>
                 <version>${remexs-parent.version}</version>
+            </dependency>
+            
+             <dependency>
+                <groupId>com.remexs</groupId>
+                <artifactId>remexs-auth</artifactId>
+                <version>${remexs-auth.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.remexs</groupId>
+                <artifactId>remexs-company</artifactId>
+                <version>${remexs-company.version}</version>
             </dependency>
         </dependencies>
 

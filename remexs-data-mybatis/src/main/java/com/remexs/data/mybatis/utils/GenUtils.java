@@ -1,7 +1,6 @@
 package com.remexs.data.mybatis.utils;
 
 import com.baomidou.mybatisplus.generator.AutoGenerator;
-import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.baomidou.mybatisplus.generator.config.PackageConfig;
@@ -12,8 +11,6 @@ import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
 import com.baomidou.mybatisplus.generator.config.rules.DbType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * mybatis-plus代码生成器
@@ -28,10 +25,10 @@ public class GenUtils {
 
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        gc.setOutputDir("F:\\remexs\\message\\src\\main\\java");//这里写你自己的java目录
+        gc.setOutputDir("C:\\Users\\Administrator\\Desktop\\CodeGen");//这里写你自己的java目录
         gc.setFileOverride(true);//是否覆盖
-        gc.setActiveRecord(true);
-        gc.setEnableCache(true);// XML 二级缓存
+        gc.setActiveRecord(false);
+        gc.setEnableCache(false);// XML 二级缓存
         gc.setBaseResultMap(false);// XML ResultMap
         gc.setBaseColumnList(false);// XML columList
         gc.setAuthor("remexs");
@@ -57,9 +54,9 @@ public class GenUtils {
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("root");
-        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/remexs_push?characterEncoding=utf8");
+        dsc.setUrl("jdbc:mysql://192.168.110.10:3306/remexs_corp?characterEncoding=utf8");
         mpg.setDataSource(dsc);
-        String module="corp";
+        String module="company";
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
         strategy.setTablePrefix(new String[]{"re_"});// 此处可以修改为您的表前缀
@@ -81,16 +78,16 @@ public class GenUtils {
 //			"qrtz_triggers"
 //    	});
 		// 自定义实体父类
-		strategy.setSuperEntityClass("com.remexs.data.mybatis.entity.PhysicalEntity");
+		strategy.setSuperEntityClass("com.remexs.data.mybatis.entity.MybatisPhysicalEntity");
 		strategy.setEntityLombokModel(true);
 		// 自定义实体，公共字段
 		strategy.setSuperEntityColumns(new String[] { "id","create_id", "create_time","update_id","update_time" });
 		// 自定义 mapper 父类
-		strategy.setSuperMapperClass("com.remexs.data.mybatis.dao.BaseDao");
+		strategy.setSuperMapperClass("com.remexs.data.mybatis.dao.MybatisDao");
 		// 自定义 service 父类
-		strategy.setSuperServiceClass("com.remexs.data.mybatis.service.BaseService");
+		strategy.setSuperServiceClass("com.remexs.data.mybatis.service.MybatisService");
 		// 自定义 service 实现类父类
-		strategy.setSuperServiceImplClass("com.remexs.data.mybatis.service.impl.BaseServiceImpl");
+		strategy.setSuperServiceImplClass("com.remexs.data.mybatis.service.impl.MybatisServiceImpl");
 		// 自定义 controller 父类
 		//strategy.setSuperControllerClass("com.remexs.data.mybatis.web.controller.BaseController");
 		// 生成 RestController 风格
@@ -109,7 +106,7 @@ public class GenUtils {
         pc.setController("com.remexs."+module+".controller");     
         mpg.setPackageInfo(pc);
 
-        // 注入自定义配置，可以在 VM 中使用 cfg.abc 设置的值
+        /*// 注入自定义配置，可以在 VM 中使用 cfg.abc 设置的值
         InjectionConfig cfg = new InjectionConfig() {
             @Override
             public void initMap() {
@@ -117,8 +114,8 @@ public class GenUtils {
                 map.put("abc", this.getConfig().getGlobalConfig().getAuthor() + "-mp");
                 this.setMap(map);
             }
-        };
-        mpg.setCfg(cfg);
+        };*/
+       // mpg.setCfg(cfg);
         
         
         // 自定义模板配置，可以 copy 源码 mybatis-plus/src/main/resources/templates 下面内容修改，
@@ -137,7 +134,7 @@ public class GenUtils {
         mpg.execute();
 
         // 打印注入设置
-        System.err.println(mpg.getCfg().getMap().get("abc"));
+        //System.err.println(mpg.getCfg().getMap().get("abc"));
     }
 
 }
