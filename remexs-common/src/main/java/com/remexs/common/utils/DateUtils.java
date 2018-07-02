@@ -10,7 +10,7 @@ import org.apache.commons.lang3.time.FastDateFormat;
  * @author remexs
  *
  */
-public class DateUtils {
+public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 	
 	static String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 

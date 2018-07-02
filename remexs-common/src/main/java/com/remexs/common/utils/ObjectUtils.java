@@ -6,6 +6,7 @@ import org.apache.commons.beanutils.ConvertUtils;
 
 import com.remexs.common.exception.ErrCode;
 import com.remexs.common.exception.ServiceException;
+import com.remexs.common.converter.Date2StrCoverter;
 import com.remexs.common.dto.Dto;
 
 
@@ -28,7 +29,7 @@ public class ObjectUtils extends org.springframework.util.ObjectUtils{
 				// 支持属性空值复制
 				BeanUtilsBean.getInstance().getConvertUtils().register(false, true, 0);
 				// 日期类型复制
-				DateCoverterUtils converter = new DateCoverterUtils();
+				Date2StrCoverter converter = new Date2StrCoverter();
 				ConvertUtils.register(converter, java.util.Date.class);
 				ConvertUtils.register(converter, java.sql.Date.class);
 				BeanUtils.copyProperties(to,from);

@@ -33,6 +33,10 @@ public class PageVO<T> extends BaseVO<T> implements Serializable {
 	 * 搜索条件
 	 */
 	private Dto searchParams;
+	/**
+	 * 搜索条件
+	 */
+	private Dto sortParams;
 
 	/**
 	 * 排序 条件

@@ -1,6 +1,10 @@
 server:
   port: 9621
 spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non-null
   redis:
     host: 192.168.110.10
     password: 123456
@@ -62,11 +66,12 @@ eureka:
   
 auth:
   server:
-    user-token-enable: false #是否开启用户请求验证
+    mode: developer
+    user-token-enable: true #是否开启用户请求验证
     user-token-header: user-token
     user-token-secret: x2318^^(*WRYQWR(QW&T
     user-token-expire: 3600
     client-token-header: client-token
-    client-token-enable: false #是否开启客户端请求验证
+    client-token-enable: true #是否开启客户端请求验证
     client-token-expire: 3600
     client-token-secret: x2318^^(*WRYQWR(QW&T

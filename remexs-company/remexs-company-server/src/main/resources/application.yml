@@ -1,6 +1,10 @@
 server:
   port: 9622
 spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non-null
   redis:
     host: 192.168.110.10
     password: 123456
@@ -58,8 +62,12 @@ eureka:
       defaultZone: http://127.0.0.1:8761/eureka/
     enabled: true
 
-  
+feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
 auth:
   client:
-    server-id: remexs-auth
+    sc: remexs-auth
     user-token-header: user-token

@@ -48,7 +48,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter  {
 		registry.addInterceptor(new GlobalInterceptor());
 		registry.addInterceptor(new AuthServerUserRestInterceptor()).excludePathPatterns(getExcludeCommonPathPatterns().toArray(new String[]{}));
 	}
-	
 	@Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
 		// REST中根据URL后缀自动判定Content-Type及相应的View
@@ -57,21 +56,4 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter  {
 		mediaTypes.put("json", MediaType.APPLICATION_JSON);
 		configurer.ignoreAcceptHeader(true).favorPathExtension(true).mediaTypes(mediaTypes);
 	}
-	@Override
-	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-		/** 使用阿里 FastJson 作为JSON MessageConverter */
-		FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
-		FastJsonConfig config = new FastJsonConfig();
-		config.setSerializerFeatures(
-			SerializerFeature.WriteMapNullValue, 		// 保留空的字段
-			SerializerFeature.WriteNullStringAsEmpty, 	// String null -> ""
-			SerializerFeature.WriteNullNumberAsZero, 	// Number null -> 0
-			SerializerFeature.PrettyFormat, 			//
-			SerializerFeature.WriteDateUseDateFormat	//
-		);
-		converter.setFastJsonConfig(config);
-		converter.setDefaultCharset(Charset.forName("UTF-8"));
-		converters.add(converter);
-	}
-
 }

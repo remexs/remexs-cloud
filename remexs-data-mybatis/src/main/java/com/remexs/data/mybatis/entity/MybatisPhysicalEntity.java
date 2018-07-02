@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.FieldFill;
 import com.baomidou.mybatisplus.enums.IdType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -37,16 +38,19 @@ public class MybatisPhysicalEntity<T extends Model<T>> extends MybatisEntity<T> 
 	 * 创建时间
 	 */
 	@TableField(value = "create_time", fill = FieldFill.INSERT)
+	@JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss")
 	public Date createTime;
 	/**
 	 * 修改者
 	 */
 	@TableField(value = "update_id", fill = FieldFill.UPDATE)
+	
 	public String updateId;
 	/**
 	 * 修改时间
 	 */
 	@TableField(value = "update_time", fill = FieldFill.UPDATE)
+	@JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss")  
 	public Date updateTime;
 
 	@Override

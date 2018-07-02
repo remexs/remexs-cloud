@@ -29,7 +29,7 @@ public class AuthServerApiRunner implements CommandLineRunner {
 
 	@Override
 	public void run(String... arg0) throws Exception {
-
+		
 		Map<String, Object> beanMaps = SpringUtils.getApplicationContext().getBeansWithAnnotation(ApiFilter.class);
 		beanMaps.keySet().forEach(key -> {
 			Class<?> clazz = (Class<?>) beanMaps.get(key).getClass();

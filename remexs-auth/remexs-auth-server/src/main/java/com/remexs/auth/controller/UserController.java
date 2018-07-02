@@ -1,6 +1,5 @@
 package com.remexs.auth.controller;
 
-import java.util.List;
 
 import com.remexs.data.mybatis.controller.MybatisController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import com.remexs.common.response.Result;
 import com.remexs.common.response.ResultUtils;
 import com.remexs.common.annotation.ApiFilter;
 import com.remexs.common.annotation.ApiMethodFilter;
-import com.remexs.auth.annotation.IgnoreAuthUserToken;
 import com.remexs.auth.entity.User;
 import com.remexs.auth.service.UserService;
 
@@ -28,7 +26,6 @@ public class UserController extends MybatisController<UserService,User>{
 	@Autowired
 	UserService userService;
 	
-	@IgnoreAuthUserToken
 	@ApiMethodFilter(name="用户登陆",code="login",path="/login",userToken=false,clientToken=false)
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public Result<String> login(
@@ -39,7 +36,6 @@ public class UserController extends MybatisController<UserService,User>{
 		String token = userService.login(account, password);
 		return ResultUtils.ok(token);
 	}
-	@IgnoreAuthUserToken
 	@ApiMethodFilter(name="用户注册",code="register",path="/register",userToken=false,clientToken=false)
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public Result<String> register(
@@ -51,7 +47,6 @@ public class UserController extends MybatisController<UserService,User>{
 		userService.register(name, account, password);
 		return ResultUtils.ok();
 	}
-	@IgnoreAuthUserToken
 	@ApiMethodFilter(name="用户验证",code="validate",path="/validate",userToken=false,clientToken=false)
 	@RequestMapping(value = "/validate", method = RequestMethod.POST)
 	public Result<Boolean> valid(

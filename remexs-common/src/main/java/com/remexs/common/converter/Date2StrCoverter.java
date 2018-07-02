@@ -1,4 +1,4 @@
-package com.remexs.common.utils;
+package com.remexs.common.converter;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,9 +8,15 @@ import org.apache.commons.beanutils.Converter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DateCoverterUtils implements Converter {
+import com.remexs.common.utils.ObjectUtils;
+/**
+ * 日期转时间转换器
+ * @author remexs
+ *
+ */
+public class Date2StrCoverter implements Converter {
 
-	private static Logger logger = LoggerFactory.getLogger(DateCoverterUtils.class);
+	private static Logger logger = LoggerFactory.getLogger(Date2StrCoverter.class);
 
 	@SuppressWarnings("unchecked")
 	@Override

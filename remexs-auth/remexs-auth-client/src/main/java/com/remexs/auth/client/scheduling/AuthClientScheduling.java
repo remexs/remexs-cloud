@@ -8,4 +8,5 @@ package com.remexs.auth.client.scheduling;
  */
 public class AuthClientScheduling {
 
+	
 }

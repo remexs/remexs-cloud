@@ -6,11 +6,17 @@ import org.springframework.core.env.Environment;
 
 import lombok.Data;
 
+/**
+ * 鉴权服务 自定义配置
+ * @author remexs
+ *
+ */
 @Data
 @Configuration
 
 public class AuthServerConfiguration implements EnvironmentAware {
-
+	private String serverName;
+	private String serverMode;
 	private Boolean userTokenEnable;
 	private String userTokenHeader;
 	private String userTokenSecret;
@@ -28,7 +34,8 @@ public class AuthServerConfiguration implements EnvironmentAware {
 
 	@Override
 	public void setEnvironment(Environment env) {
-
+		this.setServerMode(env.getProperty("auth.server.mode", "developer"));
+		this.setServerName(env.getProperty("spring.application.name", "remexs-auth"));
 		this.setUserTokenEnable(Boolean.valueOf(env.getProperty("auth.server.user-token-enable", "true")));
 		this.setUserTokenHeader(env.getProperty("auth.server.user-token-header", "user-token"));
 		this.setUserTokenSecret(env.getProperty("auth.server.user-token-secret", "xx1WET12^%3^(WE45"));

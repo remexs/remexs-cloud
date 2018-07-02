@@ -92,8 +92,8 @@ public class MybatisController<BaseService extends MybatisService<Entity>, Entit
 	@RequestMapping(value = "", method = RequestMethod.PATCH)
 	@ApiMethodFilter(name = "列表", code = "list", method = "PATCH", path = "")
 	@ResponseBody
-	public Result<List<Entity>> list(@RequestBody(required = false) HashDto paramsDto, @RequestBody(required = false) HashDto sortsDto) {
-		List<Entity> list = baseService.list(paramsDto, sortsDto);
+	public Result<List<Entity>> list(@RequestBody(required = false) HashDto paramsDto) {
+		List<Entity> list = baseService.list(paramsDto, null);
 		return ResultUtils.ok(list);
 	}
 
@@ -106,8 +106,7 @@ public class MybatisController<BaseService extends MybatisService<Entity>, Entit
 	@RequestMapping(value = "/page", method = RequestMethod.PATCH)
 	@ApiMethodFilter(name = "分页", code = "page", method = "PATCH", path = "/page")
 	@ResponseBody
-	public Result<PageVO<Entity>> page(@RequestBody(required = false) HashDto paramsDto, @RequestBody(required = false) HashDto sortsDto) {
-		PageVO<Entity> pageVO = new PageVO<>();
+	public Result<PageVO<Entity>> page(@RequestBody(required = false) PageVO pageVO) {
 		baseService.page(pageVO);
 		return ResultUtils.ok(pageVO);
 	}

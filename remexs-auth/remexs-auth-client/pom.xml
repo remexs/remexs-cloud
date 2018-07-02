@@ -28,7 +28,10 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-feign</artifactId>
 		</dependency>
-
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-okhttp</artifactId>
+        </dependency>
 		<dependency>
 			<groupId>com.remexs.auth</groupId>
 			<artifactId>remexs-auth-common</artifactId>

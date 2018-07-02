@@ -17,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.remexs.auth.client.interceptor.AuthClientUserRestInterceptor;
 import com.remexs.common.interceptor.GlobalInterceptor;
 
 /**
@@ -42,9 +43,11 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter  {
         Collections.addAll(list, urls);
         return list;
     }
+    
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new GlobalInterceptor());
+		registry.addInterceptor(new AuthClientUserRestInterceptor()).excludePathPatterns(getExcludeCommonPathPatterns().toArray(new String[]{}));;
 	}
 	
 	@Override
@@ -54,22 +57,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter  {
 		mediaTypes.put("xml", MediaType.APPLICATION_XML);
 		mediaTypes.put("json", MediaType.APPLICATION_JSON);
 		configurer.ignoreAcceptHeader(true).favorPathExtension(true).mediaTypes(mediaTypes);
-	}
-	@Override
-	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-		/** 使用阿里 FastJson 作为JSON MessageConverter */
-		FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
-		FastJsonConfig config = new FastJsonConfig();
-		config.setSerializerFeatures(
-			SerializerFeature.WriteMapNullValue, 		// 保留空的字段
-			SerializerFeature.WriteNullStringAsEmpty, 	// String null -> ""
-			SerializerFeature.WriteNullNumberAsZero, 	// Number null -> 0
-			SerializerFeature.PrettyFormat, 			//
-			SerializerFeature.WriteDateUseDateFormat	//
-		);
-		converter.setFastJsonConfig(config);
-		converter.setDefaultCharset(Charset.forName("UTF-8"));
-		converters.add(converter);
 	}
 
 }
