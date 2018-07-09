@@ -17,9 +17,10 @@ import com.remexs.data.mybatis.controller.MybatisController;
 
 import io.swagger.annotations.Api;
 
+
 /**
  * <p>
- * 资源 前端控制器
+ * 服务接口 前端控制器
  * </p>
  *
  * @author remexs
@@ -30,16 +31,15 @@ import io.swagger.annotations.Api;
 @RequestMapping("/resource")
 @ApiFilter(name="用户接口",code="resource",path="/resource")
 public class ResourceController extends MybatisController<ResourceService, Resource>{
-	@Autowired
-	ResourceService resourceService;
 	
 	@Override
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	@ApiMethodFilter(name = "新增", code = "add", method = "POST", path = "")
 	public Result<String> add(@RequestBody Resource resource) {
-		resourceService.insertOrUpdate(resource);
+		baseService.insertOrUpdate(resource);
+		resource=baseService.getBy(resource.getCode());
 		return ResultUtils.ok(resource.getId());
 	}
-
+	
 }
 

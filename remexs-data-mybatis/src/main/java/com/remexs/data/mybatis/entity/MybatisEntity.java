@@ -1,5 +1,6 @@
 package com.remexs.data.mybatis.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.activerecord.Model;
@@ -49,6 +50,10 @@ public abstract class MybatisEntity<T extends Model<T>> extends Model<T> {
 		return JsonUtils.toJson(this);
 	}
 
+	@Override
+	public Serializable pkVal() {
+		return this.id;
+	}
 
 
 }

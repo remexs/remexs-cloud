@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,6 +14,13 @@ import com.remexs.common.exception.ServiceException;
 
 
 public class StringUtils extends org.apache.commons.lang3.StringUtils{
+	   public static String[] chars = new String[] { "a", "b", "c", "d", "e", "f",
+	            "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
+	            "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5",
+	            "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I",
+	            "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V",
+	            "W", "X", "Y", "Z" };
+	    
 	/**
 	 * UTF-8 编码格式
 	 */
@@ -42,8 +50,20 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils{
 
 
 	private StringUtils() {
+		
 	}
+	
+	public static String generateStr(int len) {
+        StringBuffer shortBuffer = new StringBuffer();
+        String uuid = UUID.randomUUID().toString().replace("-", "");
+        for (int i = 0; i < len; i++) {
+            String str = uuid.substring(i * 4, i * 4 + 4);
+            int x = Integer.parseInt(str, 16);
+            shortBuffer.append(chars[x % 0x3E]);
+        }
+        return shortBuffer.toString();
 
+    }
 
 	/**
 	 * <p>

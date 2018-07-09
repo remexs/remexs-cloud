@@ -54,9 +54,9 @@ public class GenUtils {
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("root");
-        dsc.setUrl("jdbc:mysql://192.168.110.10:3306/remexs_corp?characterEncoding=utf8");
+        dsc.setUrl("jdbc:mysql://192.168.110.10:3306/remexs_user?characterEncoding=utf8");
         mpg.setDataSource(dsc);
-        String module="company";
+        String module="auth";
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
         strategy.setTablePrefix(new String[]{"re_"});// 此处可以修改为您的表前缀

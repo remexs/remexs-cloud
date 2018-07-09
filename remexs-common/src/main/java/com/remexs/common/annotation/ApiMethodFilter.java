@@ -37,23 +37,23 @@ public @interface ApiMethodFilter {
 	 * @return
 	 */
 	String path() default "";
+
+	/**
+	 * 是否启客户端验证
+	 * 
+	 * @return
+	 */
+	boolean clientTokenFilter() default false;
+	
+	/**
+	 * 是否用户验证
+	 * @return
+	 */
+	boolean userTokenFilter() default true;
 	/**
 	 * 接口访问角色列表
 	 * 
 	 * @return
 	 */
 	String[] roles() default {};
-
-	/**
-	 * 是否启用用户验证
-	 * 
-	 * @return
-	 */
-	boolean userToken() default true;
-
-	/**
-	 * 是否启用客户端验证
-	 * @return
-	 */
-	boolean clientToken() default true;
 }

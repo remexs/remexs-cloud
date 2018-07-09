@@ -1,23 +1,18 @@
 package com.remexs.company.config;
 
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.alibaba.fastjson.support.config.FastJsonConfig;
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
-import com.remexs.auth.client.interceptor.AuthClientUserRestInterceptor;
+
+import com.remexs.auth.client.interceptor.AuthClientTokenRestInterceptor;
 import com.remexs.common.interceptor.GlobalInterceptor;
 
 /**
@@ -47,7 +42,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter  {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new GlobalInterceptor());
-		registry.addInterceptor(new AuthClientUserRestInterceptor()).excludePathPatterns(getExcludeCommonPathPatterns().toArray(new String[]{}));;
+		registry.addInterceptor(new AuthClientTokenRestInterceptor()).excludePathPatterns(getExcludeCommonPathPatterns().toArray(new String[]{}));;
 	}
 	
 	@Override

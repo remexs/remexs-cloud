@@ -62,16 +62,18 @@ eureka:
     serviceUrl:
       defaultZone: http://127.0.0.1:8761/eureka/
     enabled: true
-
-  
+    
 auth:
   server:
-    mode: developer
-    user-token-enable: true #是否开启用户请求验证
+    client-token-header: client-token
+    client-token-secret: x2318^^(*WRYQWR(QW&T
+    client-token-expire: 3600
     user-token-header: user-token
     user-token-secret: x2318^^(*WRYQWR(QW&T
     user-token-expire: 3600
-    client-token-header: client-token
-    client-token-enable: true #是否开启客户端请求验证
-    client-token-expire: 3600
-    client-token-secret: x2318^^(*WRYQWR(QW&T
+  #鉴权客户端作为自己作为自己的客户端  
+  client:
+    mode: developer
+    name: 服务鉴权模块
+    desc: 服务鉴权模块
+    secret: h8FxDvJ0

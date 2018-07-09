@@ -10,10 +10,10 @@
         <module>remexs-parent</module>
         <module>remexs-common</module>
         <module>remexs-data-mybatis</module>
-        <module>remexs-data-mongodb</module>
         <module>remexs-eureka</module>
         <module>remexs-auth</module>
         <module>remexs-company</module>
+        <module>remexs-gateway</module>
     </modules>
 
     <properties>

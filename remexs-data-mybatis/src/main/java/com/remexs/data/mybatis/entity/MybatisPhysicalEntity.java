@@ -53,9 +53,4 @@ public class MybatisPhysicalEntity<T extends Model<T>> extends MybatisEntity<T> 
 	@JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss")  
 	public Date updateTime;
 
-	@Override
-	public Serializable pkVal() {
-		return this.id;
-	}
-
 }

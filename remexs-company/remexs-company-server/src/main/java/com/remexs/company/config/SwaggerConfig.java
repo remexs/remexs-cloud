@@ -61,5 +61,6 @@ public class SwaggerConfig implements EnvironmentAware{
 	@Override
 	public void setEnvironment(Environment env) {
 		this.authClientUserTokenHeader=env.getProperty("auth.client.user-token-header", "user-token");
+		this.authClientUserTokenHeader=env.getProperty("auth.client.client-token-header", "client-token");
 	}
 }

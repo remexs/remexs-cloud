@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author remexs
- * @since 2018-06-29
+ * @since 2018-07-05
  */
 @Service
 public class RoleServiceImpl extends MybatisServiceImpl<RoleDao, Role> implements RoleService {

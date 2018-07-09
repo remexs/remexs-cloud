@@ -2,5 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.remexs.auth.dao.UserDao">
 
-
+	<parameterMap type="com.remexs.common.dto.impl.HashDto" id="HashDto"/>
+	<parameterMap type="com.remexs.auth.entity.Resource" id="Resource"/>
+	
+	<!-- 根据用户编码和资源代码查询资源集合 -->
+	<select id="queryPromiseCountByUserIdAndResourceCode" resultType="java.lang.Integer" >
+		SELECT
+			count(1)
+		FROM
+			re_user_role,re_role_resource,re_resource
+		WHERE
+			re_resource.id = re_role_resource.resource_id
+		and	re_user_role.role_id = re_role_resource.role_id
+		and	re_user_role.user_id = #{userId}
+		and re_resource.code = #{resourceCode}
+	</select>
 </mapper>

@@ -11,23 +11,27 @@ import com.remexs.common.response.Result;
 
 /**
  * 资源客户端接口
+ * 
  * @author remexs
  *
  */
 @FeignClient(value = "remexs-auth")
-public interface ResourceService {
+public interface ResourceFeignService {
 	/**
 	 * 根据资源编码获得资源
+	 * 
 	 * @param id
 	 * @return
 	 */
 	@RequestMapping(value = "/resource/{id}", method = RequestMethod.GET)
 	Result<Resource> get(@PathVariable("id") String id);
+
 	/**
 	 * 新增资源
+	 * 
 	 * @param resource
 	 * @return
 	 */
 	@RequestMapping(value = "/resource", method = RequestMethod.POST)
-	Result<String> add(@RequestBody Resource resource);
+	Result<String> add(@RequestBody Resource serverApi);
 }

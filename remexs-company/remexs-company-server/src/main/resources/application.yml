@@ -69,5 +69,7 @@ feign:
     enabled: true
 auth:
   client:
-    sc: remexs-auth
-    user-token-header: user-token
+    mode: developer
+    name: 集团信息服务模块
+    desc: 集团信息服务模块
+    secret: AQW1vdBV

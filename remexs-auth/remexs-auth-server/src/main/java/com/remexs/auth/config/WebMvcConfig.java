@@ -17,7 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
-import com.remexs.auth.interceptor.AuthServerUserRestInterceptor;
+import com.remexs.auth.interceptor.AuthClientTokenRestInterceptor;
 import com.remexs.common.interceptor.GlobalInterceptor;
 
 /**
@@ -45,8 +45,9 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter  {
     }
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
+		String [] excludePaths=getExcludeCommonPathPatterns().toArray(new String[]{});
 		registry.addInterceptor(new GlobalInterceptor());
-		registry.addInterceptor(new AuthServerUserRestInterceptor()).excludePathPatterns(getExcludeCommonPathPatterns().toArray(new String[]{}));
+		registry.addInterceptor(new AuthClientTokenRestInterceptor()).excludePathPatterns(excludePaths);
 	}
 	@Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {

@@ -148,6 +148,7 @@ public class JwtTokenUtils {
 	 * @throws Exception
 	 */
 	public static Dto getInfoFromToken(String token, byte[] pubKey) throws Exception {
+		
 		Jws<Claims> claimsJws = parserToken(token, pubKey);
 		Claims body = claimsJws.getBody();
 		Dto returnDto = Dtos.newDto();

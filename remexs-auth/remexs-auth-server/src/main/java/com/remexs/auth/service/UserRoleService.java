@@ -9,7 +9,7 @@ import com.remexs.data.mybatis.service.MybatisService;
  * </p>
  *
  * @author remexs
- * @since 2018-06-29
+ * @since 2018-07-05
  */
 public interface UserRoleService extends MybatisService<UserRole> {
 

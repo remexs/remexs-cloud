@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.remexs.auth.client.feign.UserService;
+import com.remexs.auth.client.feign.UserFeignService;
 import com.remexs.auth.entity.User;
 import com.remexs.common.annotation.ApiFilter;
 import com.remexs.common.annotation.ApiMethodFilter;
@@ -36,7 +36,7 @@ import com.remexs.data.mybatis.controller.MybatisController;
 @ApiFilter(name = "公司 ", code = "company", path = "/company")
 public class CompanyController extends MybatisController<CompanyService, Company> {
 	@Autowired
-	UserService UserService;
+	UserFeignService userFeignService;
 	
 	/**
 	 * 
@@ -47,7 +47,7 @@ public class CompanyController extends MybatisController<CompanyService, Company
 	@RequestMapping(value = "/users", method = RequestMethod.PATCH)
 	@ApiMethodFilter(name = "获得用户列表", code = "users", method = "PATCH", path = "/users")
 	public Result<List<User>> users(@RequestBody(required = false) HashDto paramsDto) {
-		return UserService.list(paramsDto);
+		return userFeignService.list(paramsDto);
 	}
 
 

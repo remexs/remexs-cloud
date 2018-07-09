@@ -13,7 +13,6 @@ import com.remexs.common.annotation.ApiMethodFilter;
 import com.remexs.common.dto.impl.HashDto;
 import com.remexs.common.response.Result;
 import com.remexs.common.response.ResultUtils;
-import com.remexs.common.vo.PageVO;
 import com.remexs.data.mybatis.entity.MybatisEntity;
 import com.remexs.data.mybatis.service.MybatisService;
 
@@ -97,17 +96,4 @@ public class MybatisController<BaseService extends MybatisService<Entity>, Entit
 		return ResultUtils.ok(list);
 	}
 
-	/**
-	 * 
-	 * @param paramsDto
-	 * @param sortsDto
-	 * @return
-	 */
-	@RequestMapping(value = "/page", method = RequestMethod.PATCH)
-	@ApiMethodFilter(name = "分页", code = "page", method = "PATCH", path = "/page")
-	@ResponseBody
-	public Result<PageVO<Entity>> page(@RequestBody(required = false) PageVO pageVO) {
-		baseService.page(pageVO);
-		return ResultUtils.ok(pageVO);
-	}
 }

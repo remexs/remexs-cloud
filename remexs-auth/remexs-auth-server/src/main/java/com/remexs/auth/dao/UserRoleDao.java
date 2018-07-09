@@ -11,7 +11,7 @@ import com.remexs.data.mybatis.dao.MybatisDao;
  * </p>
  *
  * @author remexs
- * @since 2018-06-29
+ * @since 2018-07-05
  */
 @Mapper
 public interface UserRoleDao extends MybatisDao<UserRole> {

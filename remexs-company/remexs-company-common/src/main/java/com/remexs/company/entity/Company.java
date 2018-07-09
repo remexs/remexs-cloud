@@ -3,7 +3,6 @@ package com.remexs.company.entity;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.remexs.data.mybatis.entity.MybatisPhysicalEntity;
 
-import com.baomidou.mybatisplus.annotations.Version;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

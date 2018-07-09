@@ -5,15 +5,19 @@ import com.remexs.data.mybatis.service.MybatisService;
 
 /**
  * <p>
- * 资源 服务类
+ * 服务API接口分配 服务类
  * </p>
  *
  * @author remexs
- * @since 2018-06-29
+ * @since 2018-07-04
  */
 public interface ResourceService extends MybatisService<Resource> {
 	/**
-	 * 新增或修改资源
+	 * 根据API代码获得API详情
+	 * @param code
+	 * @return
 	 */
-	public boolean insertOrUpdate(Resource resource);
+	Resource getBy(String code);
+	
+	public boolean existBy(String code);
 }
