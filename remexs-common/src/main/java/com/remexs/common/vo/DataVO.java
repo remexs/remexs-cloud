@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author remexs
  *
  */
-public abstract class DataVO<T> extends BaseVO<T> implements Serializable {
+public class DataVO<T> extends BaseVO<T> implements Serializable {
 
 	/**
 	 * 

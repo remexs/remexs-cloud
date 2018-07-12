@@ -27,6 +27,7 @@ public abstract class BaseVO<T> implements Serializable {
 	public Dto toDto() {
 		return ObjectUtils.copy(this, Dtos.newDto());
 	}
+	@SuppressWarnings("unchecked")
 	public T copyFrom(Object from) {
 		return (T) ObjectUtils.copy(from, this);
 	}
