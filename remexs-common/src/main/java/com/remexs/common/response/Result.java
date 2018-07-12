@@ -1,6 +1,7 @@
 package com.remexs.common.response;
 
 import com.remexs.common.exception.ErrCode;
+import com.remexs.common.utils.JsonUtils;
 
 /**
  * 统一消息返回抽象类
@@ -84,5 +85,7 @@ public class Result<T> {
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
-
+	public String toJson() {
+		return JsonUtils.toJson(this);
+	}
 }

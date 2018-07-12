@@ -1,4 +1,4 @@
-package com.remexs.company.controller;
+package com.remexs.corp.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.remexs.common.annotation.ApiFilter;
-import com.remexs.company.entity.Department;
-import com.remexs.company.service.DepartmentService;
+import com.remexs.corp.entity.Department;
+import com.remexs.corp.service.DepartmentService;
 import com.remexs.data.mybatis.controller.MybatisController;
 
 /**

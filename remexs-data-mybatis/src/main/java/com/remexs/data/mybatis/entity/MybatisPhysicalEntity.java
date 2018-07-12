@@ -10,6 +10,10 @@ import com.baomidou.mybatisplus.enums.FieldFill;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import com.remexs.common.dto.Dto;
+import com.remexs.common.dto.Dtos;
+import com.remexs.common.utils.JsonUtils;
+import com.remexs.common.utils.ObjectUtils;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -22,7 +26,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class MybatisPhysicalEntity<T extends Model<T>> extends MybatisEntity<T> {
+public class MybatisPhysicalEntity <T extends MybatisEntity<T>> extends MybatisEntity<T> {
 
 	/**
 	 * 
@@ -52,5 +56,33 @@ public class MybatisPhysicalEntity<T extends Model<T>> extends MybatisEntity<T> 
 	@TableField(value = "update_time", fill = FieldFill.UPDATE)
 	@JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss")  
 	public Date updateTime;
+	/**
+	 * 实体编码
+	 */
+	@TableId(type = IdType.ID_WORKER_STR)
+	public String id;
+
+
+	/**
+	 * 将当前对象转换为Dto对象
+	 *
+	 * @return dto 返回的Dto对象
+	 */
+	public Dto toDto() {
+		return ObjectUtils.copy(this, Dtos.newDto());
+	}
+	@SuppressWarnings("unchecked")
+	public T copyFrom(Object from) {
+		return (T) ObjectUtils.copy(from, this);
+	}
+
+	public String toJson() {
+		return JsonUtils.toJson(this);
+	}
+
+	@Override
+	public Serializable pkVal() {
+		return this.id;
+	}
 
 }

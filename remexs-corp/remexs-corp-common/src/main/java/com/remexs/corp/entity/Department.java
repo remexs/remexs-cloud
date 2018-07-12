@@ -1,4 +1,4 @@
-package com.remexs.company.entity;
+package com.remexs.corp.entity;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;

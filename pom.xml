@@ -12,8 +12,8 @@
         <module>remexs-data-mybatis</module>
         <module>remexs-eureka</module>
         <module>remexs-auth</module>
-        <module>remexs-company</module>
-        <module>remexs-gateway</module>
+        <module>remexs-corp</module>
+        <module>remexs-gate</module>
     </modules>
 
     <properties>

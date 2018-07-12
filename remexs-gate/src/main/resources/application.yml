@@ -1,0 +1,43 @@
+server:
+  port: 9623
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non-null
+  application:
+    name: remexs-gateway
+eureka:
+  instance:
+    statusPageUrlPath: /swagger-ui.html
+    healthCheckUrlPath: /health
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
+    enabled: true
+zuul:
+  prefix: /api #为zuul设置一个公共的前缀
+  routes:
+    auth:
+      path: /auth/**
+      serviceId: remexs-auth
+    corp:
+      path: /corp/**
+      serviceId: remexs-company
+feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+    
+gateway:
+  ignore:
+    path: /static,/auth/jwt    
+auth:
+  client:
+    mode: developer
+    name: 路由模块
+    desc: 路由模块
+    secret: AQW1vdBV

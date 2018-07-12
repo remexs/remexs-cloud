@@ -1,8 +1,8 @@
-package com.remexs.company.service.impl;
+package com.remexs.corp.service.impl;
 
-import com.remexs.company.entity.Employee;
-import com.remexs.company.dao.EmployeeDao;
-import com.remexs.company.service.EmployeeService;
+import com.remexs.corp.entity.Employee;
+import com.remexs.corp.dao.EmployeeDao;
+import com.remexs.corp.service.EmployeeService;
 import com.remexs.data.mybatis.service.impl.MybatisServiceImpl;
 import org.springframework.stereotype.Service;
 

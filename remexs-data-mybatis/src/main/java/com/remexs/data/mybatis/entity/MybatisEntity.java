@@ -21,7 +21,6 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-
 public abstract class MybatisEntity<T extends Model<T>> extends Model<T> {
 
 	private static final long serialVersionUID = 3682584189038868800L;

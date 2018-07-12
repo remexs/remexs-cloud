@@ -1,4 +1,4 @@
-package com.remexs.company;
+package com.remexs.corp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

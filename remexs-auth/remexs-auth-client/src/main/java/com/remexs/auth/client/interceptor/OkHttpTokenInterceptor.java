@@ -5,7 +5,6 @@ import java.io.IOException;
 import com.remexs.auth.client.configuration.AuthClientConfiguration;
 import com.remexs.auth.constants.AuthConstants;
 import com.remexs.auth.context.AuthContext;
-import com.remexs.common.exception.ServiceException;
 import com.remexs.common.utils.ObjectUtils;
 import com.remexs.common.utils.SpringUtils;
 

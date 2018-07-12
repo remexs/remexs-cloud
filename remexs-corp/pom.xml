@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.remexs.company</groupId>
-	<artifactId>remexs-company</artifactId>
+	<groupId>com.remexs.corp</groupId>
+	<artifactId>remexs-corp</artifactId>
 	<packaging>pom</packaging>
-	<name>remexs-company</name>
+	<name>remexs-corp</name>
 
 
 	<parent>
@@ -24,7 +24,7 @@
 		<maven.compile.source>${java.version}</maven.compile.source>
 		<maven.compile.target>${java.version}</maven.compile.target>
 
-		<remexs-company-common.version>1.0.RELEASE</remexs-company-common.version>
+		<remexs-corp-common.version>1.0.RELEASE</remexs-corp-common.version>
 		
 	</properties>
 	<dependencies>
@@ -40,9 +40,9 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>com.remexs.company</groupId>
-				<artifactId>remexs-company-common</artifactId>
-				<version>${remexs-company-common.version}</version>
+				<groupId>com.remexs.corp</groupId>
+				<artifactId>remexs-corp-common</artifactId>
+				<version>${remexs-corp-common.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -78,7 +78,7 @@
 		</plugins>
 	</build>
 	<modules>
-		<module>remexs-company-server</module>
-		<module>remexs-company-common</module>
+		<module>remexs-corp-server</module>
+		<module>remexs-corp-common</module>
 	</modules>
 </project>

@@ -1,6 +1,6 @@
-package com.remexs.company.service;
+package com.remexs.corp.service;
 
-import com.remexs.company.entity.Employee;
+import com.remexs.corp.entity.Employee;
 import com.remexs.data.mybatis.service.MybatisService;
 
 /**

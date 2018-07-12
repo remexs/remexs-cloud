@@ -1,4 +1,4 @@
-package com.remexs.company.controller;
+package com.remexs.corp.controller;
 
 import java.util.List;
 
@@ -19,8 +19,8 @@ import com.remexs.common.annotation.ApiMethodFilter;
 import com.remexs.common.dto.impl.HashDto;
 import com.remexs.common.response.Result;
 import com.remexs.common.response.ResultUtils;
-import com.remexs.company.entity.Company;
-import com.remexs.company.service.CompanyService;
+import com.remexs.corp.entity.Company;
+import com.remexs.corp.service.CompanyService;
 import com.remexs.data.mybatis.controller.MybatisController;
 
 /**

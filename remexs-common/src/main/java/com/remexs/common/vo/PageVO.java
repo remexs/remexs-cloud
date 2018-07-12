@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
  * 分页实体
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 public class PageVO<T> extends BaseVO<T> implements Serializable {
 	private static final long serialVersionUID = 2252240868205663450L;
 	
@@ -52,5 +52,61 @@ public class PageVO<T> extends BaseVO<T> implements Serializable {
 	public PageVO(){
 		this.page=1;
 		this.limit=20;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public int getLimit() {
+		return limit;
+	}
+
+	public Long getTotal() {
+		return total;
+	}
+
+	public Dto getSearchParams() {
+		return searchParams;
+	}
+
+	public Dto getSortParams() {
+		return sortParams;
+	}
+
+	public Dto getSorts() {
+		return sorts;
+	}
+
+	public List<T> getList() {
+		return list;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+
+	public void setTotal(Long total) {
+		this.total = total;
+	}
+
+	public void setSearchParams(Dto searchParams) {
+		this.searchParams = searchParams;
+	}
+
+	public void setSortParams(Dto sortParams) {
+		this.sortParams = sortParams;
+	}
+
+	public void setSorts(Dto sorts) {
+		this.sorts = sorts;
+	}
+
+	public void setList(List<T> list) {
+		this.list = list;
 	}
 }

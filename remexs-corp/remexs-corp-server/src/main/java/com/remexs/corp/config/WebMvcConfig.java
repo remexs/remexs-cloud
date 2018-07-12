@@ -1,4 +1,4 @@
-package com.remexs.company.config;
+package com.remexs.corp.config;
 
 import java.util.ArrayList;
 import java.util.Collections;

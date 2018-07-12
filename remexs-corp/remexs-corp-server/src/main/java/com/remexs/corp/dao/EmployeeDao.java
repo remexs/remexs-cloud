@@ -1,8 +1,8 @@
-package com.remexs.company.dao;
+package com.remexs.corp.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.remexs.company.entity.Employee;
+import com.remexs.corp.entity.Employee;
 import com.remexs.data.mybatis.dao.MybatisDao;
 
 /**

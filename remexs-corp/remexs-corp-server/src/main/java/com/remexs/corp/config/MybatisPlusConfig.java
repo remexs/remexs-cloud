@@ -1,4 +1,4 @@
-package com.remexs.company.config;
+package com.remexs.corp.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
