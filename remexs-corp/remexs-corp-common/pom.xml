@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.remexs.corp</groupId>
-  <artifactId>remexs-corp-common</artifactId>
-  <version>1.0.RELEASE</version>
-  <name>remexs-corp-common</name>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.remexs.corp</groupId>
+	<artifactId>remexs-corp-common</artifactId>
+	<name>remexs-corp-common</name>
 
 	<parent>
-		<groupId>com.remexs.corp</groupId>
+		<groupId>com.remexs</groupId>
 		<artifactId>remexs-corp</artifactId>
-		<version>1.0.RELEASE</version>
+		<version>1.0.0.RELEASE</version>
 	</parent>
 
 	<properties>
@@ -28,5 +28,6 @@
 			<artifactId>remexs-data-mybatis</artifactId>
 		</dependency>
 	</dependencies>
-	
+
+
 </project>

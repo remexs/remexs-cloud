@@ -34,14 +34,14 @@ public class SwaggerConfig implements EnvironmentAware{
 	
 	private String authClientUserTokenHeader;
 	
-	public static final String SWAGGER_SCAN_BASE_PACKAGE = "com.remexs.company.controller";
+	public static final String SWAGGER_SCAN_BASE_PACKAGE = "com.remexs.corp.controller";
     private ApiInfo apiInfo() {
     	
 		return new ApiInfoBuilder()
-				.title("remexs-company 接口文档")
+				.title("remexs-corp 接口文档")
 				.description("remexs-cloud 接口文档作者：remexs")
 				.termsOfServiceUrl("http://www.baidu.com")
-				.version("1.0.RELEASE").build();
+				.version("1.0.0.RELEASE").build();
 	}
     @Bean
     public Docket api(){
@@ -51,7 +51,7 @@ public class SwaggerConfig implements EnvironmentAware{
     	pars.add(tokenPar.build());
     	
         return new Docket(DocumentationType.SWAGGER_2)
-        		.groupName("REMEXS-COMPANY-API")
+        		.groupName("REMEXS-CORP-API")
                 .select()
                 .apis(RequestHandlerSelectors.basePackage(SWAGGER_SCAN_BASE_PACKAGE))
                 .build()
@@ -61,6 +61,5 @@ public class SwaggerConfig implements EnvironmentAware{
 	@Override
 	public void setEnvironment(Environment env) {
 		this.authClientUserTokenHeader=env.getProperty("auth.client.user-token-header", "user-token");
-		this.authClientUserTokenHeader=env.getProperty("auth.client.client-token-header", "client-token");
 	}
 }

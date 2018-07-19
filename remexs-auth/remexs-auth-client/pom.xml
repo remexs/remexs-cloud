@@ -5,13 +5,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.remexs.auth</groupId>
 	<artifactId>remexs-auth-client</artifactId>
-	<version>1.0.RELEASE</version>
 	<name>remexs-auth-client</name>
 
 	<parent>
-		<groupId>com.remexs.auth</groupId>
+		<groupId>com.remexs</groupId>
 		<artifactId>remexs-auth</artifactId>
-		<version>1.0.RELEASE</version>
+		<version>1.0.0.RELEASE</version>
 	</parent>
 
 	<properties>
@@ -20,27 +19,31 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<maven.compile.source>${java.version}</maven.compile.source>
 		<maven.compile.target>${java.version}</maven.compile.target>
-
+		<remexs-auth-common.version>1.0.0.RELEASE</remexs-auth-common.version>
 	</properties>
 
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-feign</artifactId>
 		</dependency>
-        <dependency>
-            <groupId>io.github.openfeign</groupId>
-            <artifactId>feign-okhttp</artifactId>
-        </dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.github.openfeign</groupId>
+			<artifactId>feign-okhttp</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>com.remexs.auth</groupId>
 			<artifactId>remexs-auth-common</artifactId>
+			<version>${remexs-auth-common.version}</version>
 		</dependency>
-		
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
-        </dependency>
-        
+
 	</dependencies>
 </project>

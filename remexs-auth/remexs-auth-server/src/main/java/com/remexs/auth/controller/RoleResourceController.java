@@ -1,19 +1,18 @@
 package com.remexs.auth.controller;
 
-
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.remexs.auth.entity.RoleResource;
-import com.remexs.auth.entity.ServerResource;
 import com.remexs.auth.service.RoleResourceService;
 import com.remexs.common.annotation.ApiFilter;
 import com.remexs.common.annotation.ApiMethodFilter;
 import com.remexs.common.response.Result;
 import com.remexs.common.response.ResultUtils;
 import com.remexs.data.mybatis.controller.MybatisController;
+
 
 /**
  * <p>
@@ -25,8 +24,8 @@ import com.remexs.data.mybatis.controller.MybatisController;
  */
 @RestController
 @RequestMapping("/role/resource")
-@ApiFilter(name="用户接口",code="role:resource",path="/role/resource")
-public class RoleResourceController extends MybatisController<RoleResourceService, RoleResource>{
+@ApiFilter(name = "角色资源接口", code = "role:resource", path = "/role/resource")
+public class RoleResourceController extends MybatisController<RoleResourceService, RoleResource> {
 
 	@Override
 	@RequestMapping(value = "", method = RequestMethod.POST)
@@ -35,6 +34,5 @@ public class RoleResourceController extends MybatisController<RoleResourceServic
 		baseService.insertOrUpdate(roleResource);
 		return ResultUtils.ok(roleResource.getId());
 	}
-	
-}
 
+}

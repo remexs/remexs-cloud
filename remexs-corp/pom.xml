@@ -3,49 +3,72 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.remexs.corp</groupId>
+	<groupId>com.remexs</groupId>
 	<artifactId>remexs-corp</artifactId>
 	<packaging>pom</packaging>
+	<version>1.0.0.RELEASE</version>
 	<name>remexs-corp</name>
 
 
 	<parent>
-		<groupId>com.remexs</groupId>
-		<artifactId>remexs-parent</artifactId>
-		<version>1.0.RELEASE</version>
-		<relativePath>../</relativePath>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.14.RELEASE</version>
+		<relativePath />
 	</parent>
 
+	<modules>
+		<module>remexs-corp-server</module>
+		<module>remexs-corp-common</module>
+	</modules>
 
 	<properties>
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven.compile.source>${java.version}</maven.compile.source>
-		<maven.compile.target>${java.version}</maven.compile.target>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
 
-		<remexs-corp-common.version>1.0.RELEASE</remexs-corp-common.version>
-		
+		<remexs-common.version>1.0.0.RELEASE</remexs-common.version>
+		<remexs-data-mybatis.version>1.0.0.RELEASE</remexs-data-mybatis.version>
+		<remexs-auth-client.version>1.0.0.RELEASE</remexs-auth-client.version>
 	</properties>
-	<dependencies>
 
+	<dependencies>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
 	</dependencies>
 
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>com.remexs.corp</groupId>
-				<artifactId>remexs-corp-common</artifactId>
-				<version>${remexs-corp-common.version}</version>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Dalston.SR5</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.remexs</groupId>
+				<artifactId>remexs-common</artifactId>
+				<version>${remexs-common.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.remexs.data</groupId>
+				<artifactId>remexs-data-mybatis</artifactId>
+				<version>${remexs-data-mybatis.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.remexs.auth</groupId>
+				<artifactId>remexs-auth-client</artifactId>
+				<version>${remexs-auth-client.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
 
 	<build>
 		<plugins>
@@ -53,8 +76,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>${maven.compile.source}</source>
-					<target>${maven.compile.target}</target>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
@@ -77,8 +100,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	<modules>
-		<module>remexs-corp-server</module>
-		<module>remexs-corp-common</module>
-	</modules>
+
 </project>

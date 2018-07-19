@@ -4,13 +4,11 @@
     <groupId>com.remexs</groupId>
     <artifactId>remexs-cloud</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.RELEASE</version>
+    <version>1.0.0.RELEASE</version>
 
     <modules>
-        <module>remexs-parent</module>
         <module>remexs-common</module>
         <module>remexs-data-mybatis</module>
-        <module>remexs-eureka</module>
         <module>remexs-auth</module>
         <module>remexs-corp</module>
         <module>remexs-gate</module>
@@ -23,22 +21,17 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
-        <remexs-parent.version>1.0.RELEASE</remexs-parent.version>
-        <remexs-common.version>1.0.RELEASE</remexs-common.version>
-        <remexs-data-mybatis.version>1.0.RELEASE</remexs-data-mybatis.version>
-        <remexs-auth.version>1.0.RELEASE</remexs-auth.version>
-        <remexs-eureka.version>1.0.RELEASE</remexs-eureka.version>
+        <remexs-common.version>1.0.0.RELEASE</remexs-common.version>
+        <remexs-data-mybatis.version>1.0.0.RELEASE</remexs-data-mybatis.version>
+        <remexs-auth.version>1.0.0.RELEASE</remexs-auth.version>
+		<remexs-corp.version>1.0.0.RELEASE</remexs-corp.version>
+		<remexs-gate.version>1.0.0.RELEASE</remexs-gate.version>
     </properties>
 
 
     <!-- 默认工程依赖版本 -->
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>com.remexs</groupId>
-                <artifactId>remexs-parent</artifactId>
-                <version>${remexs-parent.version}</version>
-            </dependency>
 
             <dependency>
                 <groupId>com.remexs</groupId>
@@ -47,27 +40,29 @@
             </dependency>
 
             <dependency>
-                <groupId>com.remexs</groupId>
+                <groupId>com.remexs.data</groupId>
                 <artifactId>remexs-data-mybatis</artifactId>
                 <version>${remexs-data-mybatis.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.remexs</groupId>
-                <artifactId>remexs-eureka</artifactId>
-                <version>${remexs-parent.version}</version>
-            </dependency>
-            
              <dependency>
                 <groupId>com.remexs</groupId>
                 <artifactId>remexs-auth</artifactId>
                 <version>${remexs-auth.version}</version>
             </dependency>
+			
             <dependency>
                 <groupId>com.remexs</groupId>
-                <artifactId>remexs-company</artifactId>
-                <version>${remexs-company.version}</version>
+                <artifactId>remexs-corp</artifactId>
+                <version>${remexs-corp.version}</version>
             </dependency>
+			
+			<dependency>
+                <groupId>com.remexs</groupId>
+                <artifactId>remexs-gate</artifactId>
+                <version>${remexs-gate.version}</version>
+            </dependency>
+			
         </dependencies>
 
     </dependencyManagement>

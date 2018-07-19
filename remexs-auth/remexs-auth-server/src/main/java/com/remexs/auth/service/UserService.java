@@ -1,6 +1,7 @@
 package com.remexs.auth.service;
 
 import com.remexs.auth.entity.User;
+import com.remexs.auth.vo.UserVO;
 import com.remexs.data.mybatis.service.MybatisService;
 
 /**
@@ -46,4 +47,10 @@ public interface UserService extends MybatisService<User> {
 	 * @param resourceCode
 	 */
 	public Boolean hasPromiseBy(String userId,String resourceCode);
+	/**
+	 * 根据用户编码获得用户详情
+	 * @param userId
+	 * @return
+	 */
+	public UserVO info(String userId);
 }

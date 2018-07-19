@@ -1,12 +1,59 @@
 server:
   port: 9623
+security:
+  basic:
+    enabled: false
 spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
     default-property-inclusion: non-null
+  redis:
+    host: 192.168.110.10
+    password: 123456
+    port: 6379
   application:
-    name: remexs-gateway
+    name: remexs-gate
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    druid:
+      url: jdbc:mysql://192.168.110.10:3306/remexs_corp?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      username: root
+      password: root
+      initial-size: 10
+      max-active: 100
+      min-idle: 10
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        login-username: admin
+        login-password: admin
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
+mybatis-plus:
+  mapper-locations: classpath*:**/*Dao.xml
+  typeAliasesPackage: com.remexs.**.entity,com.remexs.common.dto.impl
+  global-config:
+    meta-object-handler: com.remexs.data.mybatis.handler.AutoColumnFillHandler
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
 eureka:
   instance:
     statusPageUrlPath: /swagger-ui.html
@@ -25,19 +72,19 @@ zuul:
       serviceId: remexs-auth
     corp:
       path: /corp/**
-      serviceId: remexs-company
+      serviceId: remexs-corp
 feign:
   httpclient:
     enabled: false
   okhttp:
     enabled: true
     
-gateway:
+gate:
   ignore:
-    path: /static,/auth/jwt    
+    path: /static,/auth/user/login,/auth/user/register  
 auth:
   client:
     mode: developer
     name: 路由模块
     desc: 路由模块
-    secret: AQW1vdBV
+    secret: D7R4Kfo2

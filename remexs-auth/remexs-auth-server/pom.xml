@@ -3,13 +3,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.remexs.auth</groupId>
 	<artifactId>remexs-auth-server</artifactId>
 	<name>remexs-auth-server</name>
 	
 	<parent>
-		<groupId>com.remexs.auth</groupId>
+		<groupId>com.remexs</groupId>
 		<artifactId>remexs-auth</artifactId>
-		<version>1.0.RELEASE</version>
+		<version>1.0.0.RELEASE</version>
 	</parent>
 	
 	<properties>
@@ -19,7 +20,7 @@
 		<maven.compile.source>${java.version}</maven.compile.source>
 		<maven.compile.target>${java.version}</maven.compile.target>
 		<springfox.version>2.7.0</springfox.version>
-		
+		<remexs-auth-common.version>1.0.0.RELEASE</remexs-auth-common.version>
 	</properties>
 	
 	<dependencies>
@@ -37,6 +38,7 @@
          <dependency>
             <groupId>com.remexs.auth</groupId>
             <artifactId>remexs-auth-common</artifactId>
+            <version>${remexs-auth-common.version}</version>
         </dependency>
         
         <dependency>
@@ -55,5 +57,6 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>${springfox.version}</version>
 		</dependency>
+		
 	</dependencies>
 </project>

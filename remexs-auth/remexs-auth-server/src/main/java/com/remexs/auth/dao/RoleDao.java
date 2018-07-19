@@ -1,5 +1,7 @@
 package com.remexs.auth.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.remexs.auth.entity.Role;
@@ -15,5 +17,5 @@ import com.remexs.data.mybatis.dao.MybatisDao;
  */
 @Mapper
 public interface RoleDao extends MybatisDao<Role> {
-
+	public List<Role> queryListByUserId(String userId);
 }

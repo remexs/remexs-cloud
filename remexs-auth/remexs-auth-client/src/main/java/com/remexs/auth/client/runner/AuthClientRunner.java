@@ -45,52 +45,76 @@ import com.remexs.common.utils.SpringUtils;
 public class AuthClientRunner implements CommandLineRunner {
 
 	Logger logger = LoggerFactory.getLogger(AuthClientRunner.class);
+
 	@Override
 	public void run(String... arg0) throws Exception {
+
 		ServerFeignService serverFeignService = SpringUtils.getBean(ServerFeignService.class);
 		ServerResourceFeignService serverResourceFeignService = SpringUtils.getBean(ServerResourceFeignService.class);
 		ResourceFeignService resourceFeignService = SpringUtils.getBean(ResourceFeignService.class);
 		RoleFeignService roleFeignService = SpringUtils.getBean(RoleFeignService.class);
 		RoleResourceFeignService roleResourceFeignService = SpringUtils.getBean(RoleResourceFeignService.class);
-		
+
 		AuthClientConfiguration authClientConfiguration = SpringUtils.getBean(AuthClientConfiguration.class);
 
 		Server client = new Server();
 		client.setCode(authClientConfiguration.getClientCode());
 		client.setName(authClientConfiguration.getClientName());
 		client.setDesc(authClientConfiguration.getClientDesc());
+
 		// 服务自动注册
 		Result<String> result = serverFeignService.add(client);
 		if (!result.isSuccess()) {
 			logger.error("鉴权客户端服务自动注册失败：" + result.getMsg());
 			throw new ServiceException("鉴权客户端服务自动注册失败：" + result.getMsg());
 		}
-		
+
 		final String clientId = result.getData();
 
-		// 刷新客户端token
-		refreshAuthClientToken();
-		
-		refreshServerConfig();
+		// 链接服务
+		serverReConnecting();
+		//
+		reloadServerConfig();
 
 		// 开启接口自动注册
 		if ("developer".equals(authClientConfiguration.getClientMode())) {
-			
+
 			logger.info("鉴权客户端开发模式动态装在资源开始。。。。。。");
-			Result<List<Server>> serverResult=serverFeignService.list(new HashDto());
-			if(!serverResult.isSuccess()) {
-				logger.info("查询系统中服务列表失败："+serverResult.getMsg());
+			Result<List<Server>> serverResult = serverFeignService.list(new HashDto());
+			if (!serverResult.isSuccess()) {
+				logger.info("查询系统中服务列表失败：" + serverResult.getMsg());
 			}
-			List<Server> serverList=serverResult.getData();
-			
-			HashDto queryDto=new HashDto();
+			List<Server> serverList = serverResult.getData();
+
+			Result<List<Resource>> resourcesResult = resourceFeignService.list(new HashDto());
+
+			if (!resourcesResult.isSuccess()) {
+				logger.info("查询系统中资源列表失败：" + resourcesResult.getMsg());
+			}
+			//授权本服务访问其他服务资源权限
+			List<Server> resourceList = serverResult.getData();
+			if (!ObjectUtils.isEmpty(resourceList)) {
+
+				resourceList.forEach(resource -> {
+					ServerResource serverResource = new ServerResource();
+
+					serverResource.setServerId(clientId);
+					serverResource.setResourceId(resource.getId());
+
+					serverResourceFeignService.add(serverResource);
+				});
+
+			}
+
+			// 获得开发组角色列表
+			HashDto queryDto = new HashDto();
 			queryDto.put("eq_parent_id", "1014894111011995650");
-			Result<List<Role>> roleResult=roleFeignService.list(queryDto);
-			if(!roleResult.isSuccess()) {
-				logger.info("查询系统中开发组角色列表失败："+roleResult.getMsg());
+			Result<List<Role>> roleResult = roleFeignService.list(queryDto);
+			if (!roleResult.isSuccess()) {
+				logger.info("查询系统中开发组角色列表失败：" + roleResult.getMsg());
 			}
-			List<Role> roleList=roleResult.getData();
-		
+			List<Role> roleList = roleResult.getData();
+
 			Map<String, Object> beanMaps = SpringUtils.getApplicationContext().getBeansWithAnnotation(ApiFilter.class);
 			beanMaps.keySet().forEach(key -> {
 				Class<?> clazz = (Class<?>) beanMaps.get(key).getClass();
@@ -125,36 +149,36 @@ public class AuthClientRunner implements CommandLineRunner {
 					resource.setCode(apiMethodCode);
 					resource.setMethod(apiMethodMethod);
 					resource.setPath(apiMethodPath);
-					
-					Result<String> resourceResult=resourceFeignService.add(resource);
-					if(!resourceResult.isSuccess()) {
+
+					Result<String> resourceResult = resourceFeignService.add(resource);
+					if (!resourceResult.isSuccess()) {
 						continue;
 					}
-					String resourceId=resourceResult.getData();
-					
-					if(!ObjectUtils.isEmpty(serverList)) {
-						//为当前系统下所有服务授于本资源的权限
-						for(Server server:serverList) {
-							ServerResource serverResource=new ServerResource();
-							
+					String resourceId = resourceResult.getData();
+
+					// 授权其他服务访问本服务的资源的权限
+					if (!ObjectUtils.isEmpty(serverList)) {
+						for (Server server : serverList) {
+							ServerResource serverResource = new ServerResource();
+
 							serverResource.setServerId(server.getId());
 							serverResource.setResourceId(resourceId);
+
 							serverResourceFeignService.add(serverResource);
 						}
 					}
-					
-					//为开发组所有角色分配本资源的权限
-					if(!ObjectUtils.isEmpty(roleList)) {
-						for(Role role:roleList) {
-							RoleResource roleResource=new RoleResource();
-							
+					// 授权开发组成员访问本服务资源的权限
+					if (!ObjectUtils.isEmpty(roleList)) {
+						for (Role role : roleList) {
+							RoleResource roleResource = new RoleResource();
+
 							roleResource.setRoleId(role.getId());
 							roleResource.setResourceId(resourceId);
-							
+
 							roleResourceFeignService.add(roleResource);
 						}
 					}
-					
+
 				}
 			});
 		}
@@ -162,10 +186,10 @@ public class AuthClientRunner implements CommandLineRunner {
 	}
 
 	/**
-	 * 定时刷新客户端token
+	 * 重新连接服务
 	 */
 	@Scheduled(cron = "0 0/10 * * * ?")
-	public void refreshAuthClientToken() {
+	public void serverReConnecting() {
 		ServerFeignService serverFeignService = SpringUtils.getBean(ServerFeignService.class);
 		AuthClientConfiguration authClientConfiguration = SpringUtils.getBean(AuthClientConfiguration.class);
 		String clientCode = authClientConfiguration.getClientCode();
@@ -180,10 +204,10 @@ public class AuthClientRunner implements CommandLineRunner {
 	}
 
 	/**
-	 * 定时刷新取得鉴权中心配置信息
+	 * 获得鉴权配置信息
 	 */
 	@Scheduled(cron = "0 0/10 * * * ?")
-	public void refreshServerConfig() {
+	public void reloadServerConfig() {
 		try {
 			ServerFeignService serverFeignService = SpringUtils.getBean(ServerFeignService.class);
 			AuthClientConfiguration authClientConfiguration = SpringUtils.getBean(AuthClientConfiguration.class);
@@ -196,15 +220,15 @@ public class AuthClientRunner implements CommandLineRunner {
 			Dto configDto = result.getData();
 
 			authClientConfiguration.setServerCode(configDto.getString(AuthConstants.SERVER_CODE));
-			
+
 			authClientConfiguration.setClientTokenHeader(configDto.getString(AuthConstants.CLIENT_TOKEN_HEADER));
 			authClientConfiguration.setClientTokenExpire(configDto.getInteger(AuthConstants.CLIENT_TOKEN_EXPIRE));
 			authClientConfiguration.setClientTokenPubKey(RsaUtils.toBytes(configDto.getString(AuthConstants.CLIENT_TOKEN_PUBKEY)));
-			
+
 			authClientConfiguration.setUserTokenHeader(configDto.getString(AuthConstants.USER_TOKEN_HEADER));
 			authClientConfiguration.setUserTokenExpire(configDto.getInteger(AuthConstants.USER_TOKEN_EXPIRE));
 			authClientConfiguration.setUserTokenPubKey(RsaUtils.toBytes(configDto.getString(AuthConstants.USER_TOKEN_PUBKEY)));
-			
+
 		} catch (IOException e) {
 			logger.error("字符串转码错误");
 			e.printStackTrace();

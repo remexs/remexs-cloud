@@ -1,9 +1,13 @@
 package com.remexs.auth.service.impl;
 
 import com.remexs.auth.entity.Role;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.remexs.auth.dao.RoleDao;
 import com.remexs.auth.service.RoleService;
 import com.remexs.data.mybatis.service.impl.MybatisServiceImpl;
+
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +20,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RoleServiceImpl extends MybatisServiceImpl<RoleDao, Role> implements RoleService {
+
+	@Override
+	public List<Role> queryListByUserId(String userId) {
+		return baseMapper.queryListByUserId(userId);
+	}
 
 }

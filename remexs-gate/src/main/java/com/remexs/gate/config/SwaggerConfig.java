@@ -1,8 +1,9 @@
-package com.remexs.auth.config;
+package com.remexs.gate.config;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
@@ -30,27 +31,27 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @ConditionalOnExpression("true")
 public class SwaggerConfig implements EnvironmentAware{
-	private String clientTokenHeader;
-	private String userTokenHeader;
 	
-	public static final String SWAGGER_SCAN_BASE_PACKAGE = "com.remexs.auth.controller";
+	private String authClientUserTokenHeader;
+	
+	public static final String SWAGGER_SCAN_BASE_PACKAGE = "com.remexs.corp.controller";
     private ApiInfo apiInfo() {
     	
 		return new ApiInfoBuilder()
-				.title("remexs-auth 接口文档")
+				.title("remexs-gate 接口文档")
 				.description("remexs-cloud 接口文档作者：remexs")
 				.termsOfServiceUrl("http://www.baidu.com")
-				.version("1.0.RELEASE").build();
+				.version("1.0.0.RELEASE").build();
 	}
     @Bean
     public Docket api(){
+    	ParameterBuilder tokenPar = new ParameterBuilder();
     	List<Parameter> pars = new ArrayList<Parameter>();
-    	Parameter clienToken=new ParameterBuilder().name(clientTokenHeader).description("用户令牌").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
-    	Parameter userToken=new ParameterBuilder().name(userTokenHeader).description("客户端令牌").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
-    	pars.add(clienToken);
-    	pars.add(userToken);
+    	tokenPar.name(authClientUserTokenHeader).description("用户令牌").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
+    	pars.add(tokenPar.build());
+    	
         return new Docket(DocumentationType.SWAGGER_2)
-        		.groupName("REMEXS-AUTH-API")
+        		.groupName("REMEXS-GATE-API")
                 .select()
                 .apis(RequestHandlerSelectors.basePackage(SWAGGER_SCAN_BASE_PACKAGE))
                 .build()
@@ -59,7 +60,6 @@ public class SwaggerConfig implements EnvironmentAware{
     }
 	@Override
 	public void setEnvironment(Environment env) {
-		this.clientTokenHeader=env.getProperty("auth.server.client-token-header");
-		this.userTokenHeader=env.getProperty("auth.server.user-token-header");
+		this.authClientUserTokenHeader=env.getProperty("auth.client.user-token-header", "user-token");
 	}
 }

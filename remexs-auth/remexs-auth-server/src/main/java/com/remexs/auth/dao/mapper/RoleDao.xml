@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.remexs.auth.dao.RoleDao">
-
+	<parameterMap type="com.remexs.common.dto.impl.HashDto" id="ParamsDto"/>
+	<resultMap type="com.remexs.common.dto.impl.HashDto" id="ResultDto"/>
+	
+	<resultMap type="com.remexs.auth.entity.Role" id="RoleResult"/>
+	
+	<!-- 根据用户编码和资源代码查询资源集合 -->
+	<select id="queryListByUserId" resultMap="RoleResult" parameterType="java.lang.String">
+		SELECT  re_role.* 
+		FROM re_role,re_user_role 
+		WHERE re_role.id=re_user_role.role_id 
+		AND re_user_role.user_id=#{userId}
+	</select>
 </mapper>

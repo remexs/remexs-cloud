@@ -1,6 +1,5 @@
 package com.remexs.auth.controller;
 
-
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +8,7 @@ import com.remexs.auth.entity.UserRole;
 import com.remexs.auth.service.UserRoleService;
 import com.remexs.common.annotation.ApiFilter;
 import com.remexs.data.mybatis.controller.MybatisController;
+
 
 /**
  * <p>
@@ -20,9 +20,7 @@ import com.remexs.data.mybatis.controller.MybatisController;
  */
 @RestController
 @RequestMapping("/user/role")
-@ApiFilter(code = "user:role", path = "/user/role")
-public class UserRoleController extends MybatisController<UserRoleService, UserRole>{
-	
-	
-}
+@ApiFilter(name = "用户接口", code = "user:role", path = "/user/role")
+public class UserRoleController extends MybatisController<UserRoleService, UserRole> {
 
+}

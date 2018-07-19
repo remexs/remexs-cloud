@@ -9,9 +9,9 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan("com.remexs.**")
 @EnableEurekaClient
 
-public class AuthServerBootStrap {
+public class AuthBootStrap {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AuthServerBootStrap.class, args);
+		SpringApplication.run(AuthBootStrap.class, args);
 	}
 }

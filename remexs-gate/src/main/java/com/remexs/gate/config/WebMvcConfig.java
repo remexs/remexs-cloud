@@ -1,24 +1,18 @@
-package com.remexs.auth.config;
+package com.remexs.gate.config;
 
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.alibaba.fastjson.support.config.FastJsonConfig;
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
-import com.remexs.auth.interceptor.AuthClientTokenInterceptor;
-import com.remexs.auth.interceptor.AuthUserTokenInterceptor;
+
+import com.remexs.auth.client.interceptor.AuthUserTokenInterceptor;
 import com.remexs.common.interceptor.GlobalInterceptor;
 
 /**
@@ -44,13 +38,13 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter  {
         Collections.addAll(list, urls);
         return list;
     }
+    
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		String [] excludePaths=getExcludeCommonPathPatterns().toArray(new String[]{});
 		registry.addInterceptor(new GlobalInterceptor());
-		registry.addInterceptor(new AuthClientTokenInterceptor()).excludePathPatterns(excludePaths);
-		registry.addInterceptor(new AuthUserTokenInterceptor()).excludePathPatterns(excludePaths);
+		registry.addInterceptor(new AuthUserTokenInterceptor()).excludePathPatterns(getExcludeCommonPathPatterns().toArray(new String[]{}));;
 	}
+	
 	@Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
 		// REST中根据URL后缀自动判定Content-Type及相应的View
@@ -59,4 +53,5 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter  {
 		mediaTypes.put("json", MediaType.APPLICATION_JSON);
 		configurer.ignoreAcceptHeader(true).favorPathExtension(true).mediaTypes(mediaTypes);
 	}
+
 }

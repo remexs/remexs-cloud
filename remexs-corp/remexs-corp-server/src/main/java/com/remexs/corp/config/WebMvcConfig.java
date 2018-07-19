@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 
-import com.remexs.auth.client.interceptor.AuthClientTokenRestInterceptor;
+import com.remexs.auth.client.interceptor.AuthUserTokenInterceptor;
 import com.remexs.common.interceptor.GlobalInterceptor;
 
 /**
@@ -42,7 +42,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter  {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new GlobalInterceptor());
-		registry.addInterceptor(new AuthClientTokenRestInterceptor()).excludePathPatterns(getExcludeCommonPathPatterns().toArray(new String[]{}));;
+		registry.addInterceptor(new AuthUserTokenInterceptor()).excludePathPatterns(getExcludeCommonPathPatterns().toArray(new String[]{}));;
 	}
 	
 	@Override

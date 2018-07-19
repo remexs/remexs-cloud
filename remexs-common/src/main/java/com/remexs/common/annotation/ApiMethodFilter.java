@@ -49,7 +49,7 @@ public @interface ApiMethodFilter {
 	 * 是否用户验证
 	 * @return
 	 */
-	boolean userTokenFilter() default true;
+	boolean userTokenFilter() default false;
 	/**
 	 * 接口访问角色列表
 	 * 

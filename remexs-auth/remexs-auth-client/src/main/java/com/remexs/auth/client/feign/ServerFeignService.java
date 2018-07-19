@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.remexs.auth.entity.Server;
-import com.remexs.auth.entity.ServerResource;
 import com.remexs.common.dto.impl.HashDto;
 import com.remexs.common.response.Result;
 

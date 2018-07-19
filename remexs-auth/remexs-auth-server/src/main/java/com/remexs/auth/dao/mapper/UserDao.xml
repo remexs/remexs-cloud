@@ -3,7 +3,6 @@
 <mapper namespace="com.remexs.auth.dao.UserDao">
 
 	<parameterMap type="com.remexs.common.dto.impl.HashDto" id="HashDto"/>
-	<parameterMap type="com.remexs.auth.entity.Resource" id="Resource"/>
 	
 	<!-- 根据用户编码和资源代码查询资源集合 -->
 	<select id="queryPromiseCountByUserIdAndResourceCode" resultType="java.lang.Integer" >

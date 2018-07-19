@@ -5,23 +5,25 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.remexs.corp</groupId>
 	<artifactId>remexs-corp-server</artifactId>
-	<version>1.0.RELEASE</version>
+	<version>1.0.0.RELEASE</version>
 	<name>remexs-corp-server</name>
 
 	<parent>
-		<groupId>com.remexs.corp</groupId>
+		<groupId>com.remexs</groupId>
 		<artifactId>remexs-corp</artifactId>
-		<version>1.0.RELEASE</version>
+		<version>1.0.0.RELEASE</version>
 	</parent>
 
 	<properties>
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven.compile.source>${java.version}</maven.compile.source>
-		<maven.compile.target>${java.version}</maven.compile.target>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		
 		<springfox.version>2.7.0</springfox.version>
-
+		<remexs-corp-common.version>1.0.0.RELEASE</remexs-corp-common.version>
+		
 	</properties>
 
 	<dependencies>
@@ -39,12 +41,12 @@
 		<dependency>
 			<groupId>com.remexs.corp</groupId>
 			<artifactId>remexs-corp-common</artifactId>
+			<version>${remexs-corp-common.version}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>com.remexs.auth</groupId>
 			<artifactId>remexs-auth-client</artifactId>
-			<version>1.0.RELEASE</version>
 		</dependency>
 		
 		<dependency>

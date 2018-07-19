@@ -1,5 +1,8 @@
 server:
   port: 9621
+security:
+  basic:
+    enabled: false
 spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
